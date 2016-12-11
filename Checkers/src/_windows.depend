@@ -1,0 +1,103 @@
+# depslib dependency file v1.0
+1481252222 source:c:\users\hemerson\desktop\cc 8 periodo\sistemas inteligentes\cg\src\main.cpp
+	<iostream>
+	<stdio.h>
+	<GL/glut.h>
+	"misc.h"
+
+1368294560 c:\users\hemerson\desktop\cc 8 periodo\sistemas inteligentes\cg\include\gl\glut.h
+	"freeglut_std.h"
+
+1368294560 c:\users\hemerson\desktop\cc 8 periodo\sistemas inteligentes\cg\include\gl\freeglut_std.h
+	<windows.h>
+	<OpenGL/gl.h>
+	<OpenGL/glu.h>
+	<GL/gl.h>
+	<GL/glu.h>
+	<stdlib.h>
+
+1481254665 source:c:\users\hemerson\desktop\cc 8 periodo\sistemas inteligentes\cg\src\src\node.cpp
+	"Node.h"
+	<GL/glut.h>
+	<math.h>
+
+1481253433 c:\users\hemerson\desktop\cc 8 periodo\sistemas inteligentes\cg\src\include\node.h
+	"Piece.h"
+
+1481249503 c:\users\hemerson\desktop\cc 8 periodo\sistemas inteligentes\cg\src\include\piece.h
+
+1481249504 source:c:\users\hemerson\desktop\cc 8 periodo\sistemas inteligentes\cg\src\src\piece.cpp
+	"Piece.h"
+
+1481254707 c:\users\hemerson\desktop\cc 8 periodo\sistemas inteligentes\cg\src\include\misc.h
+	"Node.h"
+	<iostream>
+
+1481252222 source:c:\users\hemerson\desktop\cc 8 periodo\sistemas inteligentes\checkers\src\main.cpp
+	<iostream>
+	<stdio.h>
+	<GL/glut.h>
+	"misc.h"
+
+1368294560 c:\users\hemerson\desktop\cc 8 periodo\sistemas inteligentes\checkers\include\gl\glut.h
+	"freeglut_std.h"
+
+1368294560 c:\users\hemerson\desktop\cc 8 periodo\sistemas inteligentes\checkers\include\gl\freeglut_std.h
+	<windows.h>
+	<OpenGL/gl.h>
+	<OpenGL/glu.h>
+	<GL/gl.h>
+	<GL/glu.h>
+	<stdlib.h>
+
+1481255063 c:\users\hemerson\desktop\cc 8 periodo\sistemas inteligentes\checkers\src\include\misc.h
+	"Node.h"
+	<iostream>
+
+1481253433 c:\users\hemerson\desktop\cc 8 periodo\sistemas inteligentes\checkers\src\include\node.h
+	"Piece.h"
+
+1481249503 c:\users\hemerson\desktop\cc 8 periodo\sistemas inteligentes\checkers\src\include\piece.h
+
+1481254665 source:c:\users\hemerson\desktop\cc 8 periodo\sistemas inteligentes\checkers\src\src\node.cpp
+	"Node.h"
+	<GL/glut.h>
+	<math.h>
+
+1481249504 source:c:\users\hemerson\desktop\cc 8 periodo\sistemas inteligentes\checkers\src\src\piece.cpp
+	"Piece.h"
+
+1481455984 source:c:\users\hemerson\downloads\minimaxcheckers-master\minimaxcheckers-master\checkers\src\main.cpp
+	<iostream>
+	<stdio.h>
+	<GL/glut.h>
+	"misc.h"
+
+1481455984 c:\users\hemerson\downloads\minimaxcheckers-master\minimaxcheckers-master\checkers\include\gl\glut.h
+	"freeglut_std.h"
+
+1481455984 c:\users\hemerson\downloads\minimaxcheckers-master\minimaxcheckers-master\checkers\include\gl\freeglut_std.h
+	<windows.h>
+	<OpenGL/gl.h>
+	<OpenGL/glu.h>
+	<GL/gl.h>
+	<GL/glu.h>
+	<stdlib.h>
+
+1481455984 c:\users\hemerson\downloads\minimaxcheckers-master\minimaxcheckers-master\checkers\src\include\misc.h
+	"Node.h"
+	<iostream>
+
+1481455984 c:\users\hemerson\downloads\minimaxcheckers-master\minimaxcheckers-master\checkers\src\include\node.h
+	"Piece.h"
+
+1481455984 c:\users\hemerson\downloads\minimaxcheckers-master\minimaxcheckers-master\checkers\src\include\piece.h
+
+1481455984 source:c:\users\hemerson\downloads\minimaxcheckers-master\minimaxcheckers-master\checkers\src\src\node.cpp
+	"Node.h"
+	<GL/glut.h>
+	<math.h>
+
+1481455984 source:c:\users\hemerson\downloads\minimaxcheckers-master\minimaxcheckers-master\checkers\src\src\piece.cpp
+	"Piece.h"
+
