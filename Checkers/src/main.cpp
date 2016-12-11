@@ -1,12 +1,20 @@
 
 #include <iostream>
+#include <list>
 #include <stdio.h>
+#include <stdlib.h>
 #include <GL/glut.h>
-#include "misc.h"
+#include <Node.h>
+#define BLACK 1
+#define WHITE -1
+#define SIMPLE 1
+#define QUEEN 3
 #define WIDTH 560
 #define HEIGHT 560
+#define SIDE 70
+#define CIRCLE_PRECISION 180
 
-Node* game;
+Node* game = new Node(7);
 
 void init(void)
 {
@@ -20,8 +28,6 @@ void init(void)
 
    glMatrixMode(GL_MODELVIEW); // Select The Modelview Matrix
    glLoadIdentity();           // Inicializa com matriz identidade
-
-   game = init_tree();
 }
 
 void idle()
@@ -32,7 +38,6 @@ void display(void)
 {
   	glClear (GL_COLOR_BUFFER_BIT);
   	game->display();
-
 	glutSwapBuffers();
 }
 
@@ -43,12 +48,16 @@ void motion(int x, int y)
 
 void passiveMotion(int x, int y)
 {
-    /** Movimento passivo do mouse pra controlar o rebatedor **/
+    /** Movimento passivo do mouse realça as peças **/
+    game->Highlight(x, y);
 
 }
 
 void mouse(int button, int state, int x, int y)
 {
+    game->MovePiece(button, state, x, y);
+    game->SelectPiece(button, state, x, y);
+
 
 }
 
@@ -71,7 +80,7 @@ void keyboardUp(unsigned char key, int x, int y)
 int main(int argc, char** argv)
 {
     glutInit(&argc, argv);
-    glutInitDisplayMode(GLUT_DOUBLE|GLUT_RGB);
+    glutInitDisplayMode(GLUT_DOUBLE|GLUT_RGBA);
     glutInitWindowSize(WIDTH, HEIGHT);
     glutInitWindowPosition(280, 60);
     glutCreateWindow("Checkers");

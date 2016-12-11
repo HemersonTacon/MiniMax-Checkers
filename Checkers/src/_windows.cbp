@@ -23,6 +23,7 @@
 			<Add option="-Wall" />
 			<Add option="-Wno-unused-function" />
 			<Add option="-fexceptions" />
+			<Add option="-std=gnu++0x" />
 			<Add directory="../include" />
 			<Add directory="../include/png" />
 			<Add directory="../include/zlib" />
@@ -38,12 +39,15 @@
 			<Add library="libglew32.dll.a" />
 			<Add directory="../lib" />
 		</Linker>
+		<Unit filename="include/Move.h" />
 		<Unit filename="include/Node.h" />
 		<Unit filename="include/Piece.h" />
 		<Unit filename="include/misc.h" />
 		<Unit filename="main.cpp" />
+		<Unit filename="src/Move.cpp" />
 		<Unit filename="src/Node.cpp" />
 		<Unit filename="src/Piece.cpp" />
+		<Unit filename="src/misc.cpp" />
 		<Extensions>
 			<code_completion />
 			<debugger />

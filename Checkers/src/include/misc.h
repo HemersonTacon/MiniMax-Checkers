@@ -1,36 +1,43 @@
+#ifndef MISC_H
+#define MISC_H
+
 #define BLACK 1
 #define WHITE -1
 #define SIMPLE 1
 #define QUEEN 3
+#define OUT 0
+#define EMPTY 2
+#define WIDTH 560
+#define HEIGHT 560
+#define SIDE 70
+#define CIRCLE_PRECISION 180
 
 #include "Node.h"
+#include "Move.h"
 #include <iostream>
+#include <list>
+#include <stdio.h>
+#include <stdlib.h>
+#include <GL/glut.h>
 
+class Node;
 
-Node* init_tree(){
+class misc
+{
+    public:
+        misc();
+        ~misc();
 
-    Node* tree = new Node(7);
+        void init_tree(Node* tree);
+        void highlightSquare(int x, int y);
+        void highlightMoves(std::list<Move> moves);
+        void selectedSquare(int x, int y);
 
-    for(int j = 0; j < 8; ++j){
-        for(int i = 0; i<3; ++i){
-            if((j + i) % 2 == 1){
-                tree->Setboard(j, i, new Piece(BLACK, QUEEN));
-            } else{
-                tree->Setboard(j, i, NULL);
-            }
-        }
-        tree->Setboard(j, 3, NULL);
-        tree->Setboard(j, 4, NULL);
-        for(int i = 5; i<8; ++i){
-            if((j + i) % 2 == 1){
-                tree->Setboard(j, i, new Piece(WHITE, QUEEN));
-            } else{
-                tree->Setboard(j, i, NULL);
-            }
-        }
-    }
-    tree->Setturn(WHITE);
-    tree->Setparent(NULL);
+    protected:
 
-    return tree;
-}
+    private:
+
+};
+
+#endif // MISC_H
+
