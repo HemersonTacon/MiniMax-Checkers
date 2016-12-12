@@ -10,21 +10,20 @@ void Node::Highlight(int x, int y)
 {
     Piece* p = this->Getboard(int(x/SIDE), int(y/SIDE));
 
-    if(/*p->Getcolor() == WHITE &&*/ p->Gettype() != EMPTY && !pSelected){
+    if(p->Getcolor() == turn && p->Gettype() != EMPTY && !pSelected){
         highlight = true;
         squareX = int(x/SIDE)*SIDE;
         squareY = int(y/SIDE)*SIDE;
-    } else{
+    } else if(!moving){
         highlight = false;
     }
 }
 
 void Node::SelectPiece(int button, int state, int x, int y){
 
-    if(button == GLUT_LEFT_BUTTON && state == GLUT_DOWN){
+    if(button == GLUT_LEFT_BUTTON && state == GLUT_DOWN && !moving){
         if(highlight){
             pSelected = true;
-            //printf("Selecionando %i, %i",squareX/SIDE, squareY/SIDE);
             pieceSelected = this->Getboard(squareX/SIDE, squareY/SIDE);
             this->Getmoves(pieceSelected);
         } else{
@@ -35,34 +34,54 @@ void Node::SelectPiece(int button, int state, int x, int y){
 }
 
 void Node::MovePiece(int button, int state, int x, int y){
-    if(pSelected){
-        for(auto iter = moves.begin(); iter!= moves.end(); ++iter){
-                Move m = *iter;
-                /**se cliquei em um quadrado que está na lista de movimentos*/
-                if(m.Getx() == int(x/SIDE) && m.Gety() == int(y/SIDE)){
-                        Piece* destiny = this->Getboard(int(x/SIDE), int(y/SIDE));
-                        int type = pieceSelected->Gettype();
-                        int color = pieceSelected->Getcolor();
-                        destiny->Settype(type);
-                        destiny->Setcolor(color);
-                        pieceSelected->Settype(EMPTY);
-                        pieceSelected->Setcolor(0);
-                        pSelected = false;
-                        /**se este movimento é de ataque*/
-                        if(m.Getatck() > 0){
-                            std::list<Piece*> pAttacked = m.getAttacked();
-                            /**Percorro a lista de peças atacadas e as removo do jogo*/
-                            for(auto iter2 = pAttacked.begin(); iter2!= pAttacked.end(); ++iter2){
-                                Piece* pRemove = *iter2;
+
+    if(button == GLUT_LEFT_BUTTON && state == GLUT_DOWN){
+        if(pSelected){
+            for(auto iter = moves.begin(); iter!= moves.end(); ++iter){
+                    Move m = *iter;
+                    Piece* destiny = *(m.getDestinies().begin());
+                    /**se cliquei em um quadrado que está na lista de movimentos*/
+                    if(destiny->GetX() == int(x/SIDE) && destiny->GetY()  == int(y/SIDE)){
+                            int type = pieceSelected->Gettype();
+                            int color = pieceSelected->Getcolor();
+                            destiny->Settype(type);
+                            destiny->Setcolor(color);
+                            pieceSelected->Settype(EMPTY);
+                            pieceSelected->Setcolor(0);
+                            /**se este movimento é de ataque*/
+                            if(m.Getatck() > 0){
+                                Piece* pRemove = *((*iter).getAttacked().begin());
                                 pRemove->Settype(EMPTY);
                                 pRemove->Setcolor(0);
+                                /**Se é um ataque em cadeia*/
+                                if(m.Getatck() > 1){
+                                    pSelected = true;
+                                    moving = true;
+                                    pieceSelected = destiny;
+                                    squareX = pieceSelected->GetX()*SIDE;
+                                    squareY = pieceSelected->GetY()*SIDE;
+                                    moves.clear();
+                                    this->Getmoves(pieceSelected);
+                                    return;
+                                }
                             }
-                        }
-                }
+                            if(destiny->GetY() == 3.5*(1 + destiny->Getcolor())){
+                                destiny->Settype(QUEEN);
+                            }
+                            turn = -turn;
+                            moving = false;
+                            iter = moves.end();
+                            iter--;
+                    }
+            }
+            if(!moving){
+                pSelected = false;
+                moves.clear();
+            }
+
         }
     }
 }
-
 
 void Node::draw_circle(float radius, int posx, int posy){
 
@@ -160,42 +179,99 @@ void Node::display(){
 
 void Node::Getmoves(Piece* p)
 {
-    int x = p->GetX(), y = p->GetY();
+    int x = p->GetX(), y = p->GetY(), maxChain;
     int type = p->Gettype(), color = p->Getcolor();
-    Piece* temp;
-
+    Piece* destiny = this->Getboard(x - 1, y + color);
     /**Checking simple movements ahead*/
-    if(this->Getboard(x - 1, y + color)->Gettype() == EMPTY){
-        moves.push_front(Move(x - 1 ,y + color, 0));
+
+    if(destiny->Gettype() == EMPTY){
+        Move m = Move(destiny->GetX(),destiny->GetY(), 0);
+        m.addDst(destiny);
+        //m.print();
+        moves.push_front(m);
     }
-    if(this->Getboard(x + 1, y + color)->Gettype() == EMPTY){
-        moves.push_front(Move(x + 1 ,y + color, 0));
+    destiny = this->Getboard(x + 1, y + color);
+    if(destiny->Gettype() == EMPTY){
+        Move m = Move(destiny->GetX(),destiny->GetY(), 0);
+        m.addDst(destiny);
+        //m.print();
+        moves.push_front(m);
+    }
+    if(type == QUEEN){
+        destiny = this->Getboard(x - 1, y - color);
+        if(destiny->Gettype() == EMPTY){
+            Move m = Move(destiny->GetX(),destiny->GetY(), 0);
+            m.addDst(destiny);
+            //m.print();
+            moves.push_front(m);
+        }
+        destiny = this->Getboard(x + 1, y - color);
+        if(destiny->Gettype() == EMPTY){
+            Move m = Move(destiny->GetX(),destiny->GetY(), 0);
+            m.addDst(destiny);
+            //m.print();
+            moves.push_front(m);
+        }
     }
 
-    /**Checking simple atck moves*/
-    if(this->Getboard(x - 1, y + color)->Getcolor() == -color && this->Getboard(x - 2, y + 2*color)->Gettype() == EMPTY){
-        Move m = Move(x - 2 ,y + 2*color, 1);
-        m.addAtck(this->Getboard(x - 1, y + color));
-        moves.push_front(m);
 
-    }
-    if(this->Getboard(x + 1, y + color)->Getcolor() == -color && this->Getboard(x + 2, y + 2*color)->Gettype() == EMPTY){
-        Move m = Move(x + 2 ,y + 2*color, 1);
-        m.addAtck(this->Getboard(x + 1, y + color));
-        moves.push_front(m);
-    }
-    if(this->Getboard(x - 1, y - color)->Getcolor() == -color && this->Getboard(x - 2, y - 2*color)->Gettype() == EMPTY){
-        Move m = Move(x - 2 ,y - 2*color, 1);
-        m.addAtck(this->Getboard(x - 1, y - color));
-        moves.push_front(m);
-    }
-    if(this->Getboard(x + 1, y - color)->Getcolor() == -color && this->Getboard(x + 2, y - 2*color)->Gettype() == EMPTY){
-        Move m = Move(x + 2 ,y - 2*color, 1);
-        m.addAtck(this->Getboard(x + 1, y - color));
-        moves.push_front(m);
+    /**Checking atck moves*/
+    maxChain = this->AtckMoves(color, type, Move(x , y, 0));
+    //std::cout<<"\nMax chain "<<maxChain;
+    /**Para obedecer a lei da maioria, elimino todos movimentos com menos capturas*/
+    for(auto iter = moves.begin(); iter!= moves.end(); ){
+        //std::cout<<"\nTesting move to "<<(*iter).Getx()<<", "<<(*iter).Gety()<<" with chain "<<(*iter).Getatck();
+        if((*iter).Getatck() < maxChain){
+            //std::cout<<"\nErasing that...";
+            iter = moves.erase(iter);
+        } else{
+            ++iter;
+        }
     }
 
 }
+
+int Node::AtckMoves(int color, int type, Move origin){
+
+    int x = origin.Getx(), y = origin.Gety();
+    int chain = origin.Getatck();
+    int chainDegree[4] = {chain, chain, chain, chain};
+    std::list<Piece*> pAttacked = origin.getAttacked();
+    std::list<Piece*> pDestinies = origin.getDestinies();
+
+
+    for(int i = 0; i<4; ++i){
+        int xSignal = (int(i/2))*2 - 1, /**Gives me -1,-1, 1, 1*/
+            ySignal = (int(i%2))*2 - 1; /**Gives me -1, 1,-1, 1*/
+
+        Piece* attacked = this->Getboard(x + xSignal, y + ySignal*color);
+        Piece* destiny = this->Getboard(x + 2*xSignal, y + 2*ySignal*color);
+
+        if(attacked->Getcolor() == -color && destiny->Gettype() == EMPTY
+           && std::find(pAttacked.begin(), pAttacked.end(), attacked) == pAttacked.end()){
+
+            Move m = Move(destiny->GetX() , destiny->GetY(), chain + 1);
+            for(auto iter = pAttacked.begin(); iter!= pAttacked.end(); ++iter){
+                m.addAtck(*iter);
+            }
+
+            for(auto iter = pDestinies.begin(); iter!= pDestinies.end(); ++iter){
+                m.addDst(*iter);
+            }
+
+            m.addAtck(attacked);
+            m.addDst(destiny);
+            //m.print();
+            moves.push_front(m);
+            chainDegree[i] = this->AtckMoves(color, type, m);
+        }
+    }
+
+    auto minmax = std::minmax_element(std::begin(chainDegree), std::end(chainDegree));
+
+    return *minmax.second;
+}
+
 
 Node::~Node()
 {

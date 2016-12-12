@@ -56,8 +56,8 @@ void passiveMotion(int x, int y)
 void mouse(int button, int state, int x, int y)
 {
     game->MovePiece(button, state, x, y);
-    game->SelectPiece(button, state, x, y);
 
+    game->SelectPiece(button, state, x, y);
 
 }
 

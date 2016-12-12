@@ -64,8 +64,9 @@ void misc::selectedSquare(int x, int y){
 void misc::highlightMoves(std::list<Move> moves){
 
     for(auto iter = moves.begin(); iter!= moves.end(); ++iter){
-                //std::cout<<(*iter)[0]*SIDE<<", "<<(*iter)[1]*SIDE;
-                selectedSquare((*iter).Getx()*SIDE, (*iter).Gety()*SIDE);
+        Piece* p = *((*iter).getDestinies().begin());
+        int x = p->GetX(), y = p->GetY();
+        selectedSquare(x*SIDE, y*SIDE);
     }
 
 }

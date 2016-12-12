@@ -3,6 +3,7 @@
 
 #include <list>
 #include "Piece.h"
+#include <iostream>
 
 class Move
 {
@@ -19,10 +20,14 @@ class Move
         void addAtck(Piece* p);
         void clearAtck();
         std::list<Piece*> getAttacked();
+        void addDst(Piece* p);
+        void clearDst();
+        std::list<Piece*> getDestinies();
+        void print();
 
     protected:
         std::list<Piece*> attacked;
-
+        std::list<Piece*> destinies;
     private:
 
         int x;

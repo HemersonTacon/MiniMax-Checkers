@@ -6,6 +6,7 @@
 #include <math.h>
 #include <iostream>
 #include <list>
+#include <algorithm>
 #include <stdio.h>
 #include "misc.h"
 #include "move.h"
@@ -46,8 +47,6 @@ class Node
             }
 
         }
-
-
         void Setboard(int x, int y, Piece* p) { this->board[x][y] = p; }
         void Getmoves(Piece* p);
         void draw_circle(float radius, int posx, int posy);
@@ -58,7 +57,7 @@ class Node
 
 
     protected:
-        bool highlight = false, pSelected = false;
+        bool highlight = false, pSelected = false, moving = false;
         int squareX = -SIDE, squareY = -SIDE;
         Piece* pieceSelected;
         std::list<Move> moves;
@@ -71,6 +70,9 @@ class Node
         Piece* board[8][8];
         Node* parent;
         Node** children;
+
+
+        int AtckMoves(int color, int type, Move origin);
 };
 
 #endif // NODE_H
