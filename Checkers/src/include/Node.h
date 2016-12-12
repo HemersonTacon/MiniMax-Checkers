@@ -30,25 +30,22 @@ class Node
         virtual ~Node();
 
         int Getturn() { return turn; }
-        void Setturn(int val) { turn = val; }
+        void Setturn(int val) {
+            turn = val;
+            moves.clear();
+            this->GetAllmoves(val);
+            }
         int Getn_child() { return num_child; }
         void Setn_child(int val) { num_child = val; }
         Node* Getparent() { return parent; }
         void Setparent(Node* val) { parent = val; }
         Node** Getchildren() { return children; }
         void Setchildren(Node** val) { children = val; }
-        Piece* Getboard(int x, int y) {
-            if(0 <= x && x < 8 && 0 <= y && y < 8){
-                return this->board[x][y];
-            }
-            else{
-                Piece* p = new Piece(-1, -1, 0, OUT); //Peça fora do tabuleiro
-                return p;
-            }
-
-        }
-        void Setboard(int x, int y, Piece* p) { this->board[x][y] = p; }
-        void Getmoves(Piece* p);
+        void SetPiece(Piece* p);
+        Piece* GetPiece(int x, int y);
+        bool RemovePiece(Piece* p);
+        int Getmoves(Piece* p);
+        void GetAllmoves(int color);
         void draw_circle(float radius, int posx, int posy);
         void display();
         void Highlight(int x, int y);
@@ -67,9 +64,10 @@ class Node
 
         int turn;
         int num_child;
-        Piece* board[8][8];
         Node* parent;
         Node** children;
+        std::list<Piece*> Pieces[2];
+        int pieceCounter[2];
 
 
         int AtckMoves(int color, int type, Move origin);

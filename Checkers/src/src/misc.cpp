@@ -4,22 +4,12 @@
 void misc::init_tree(Node* tree){
 
     for(int j = 0; j < 8; ++j){
-        for(int i = 0; i<3; ++i){
-            if((j + i) % 2 == 1){
-                tree->Setboard(j, i, new Piece(j, i, BLACK, SIMPLE));
-            } else{
-                tree->Setboard(j, i, new Piece(j, i, 0, EMPTY));
-            }
-        }
-        tree->Setboard(j, 3, new Piece(j, 3, 0, EMPTY));
-        tree->Setboard(j, 4, new Piece(j, 4, 0, EMPTY));
-        for(int i = 5; i<8; ++i){
-            if((j + i) % 2 == 1){
-                tree->Setboard(j, i, new Piece(j, i, WHITE, SIMPLE));
-            } else{
-                tree->Setboard(j, i, new Piece(j, i, 0, EMPTY));
-            }
-        }
+        for(int i = 0; i<3; ++i)
+            if((j + i) % 2 == 1)
+                tree->SetPiece(new Piece(j, i, BLACK, SIMPLE));
+        for(int i = 5; i<8; ++i)
+            if((j + i) % 2 == 1)
+                tree->SetPiece(new Piece(j, i, WHITE, SIMPLE));
     }
     tree->Setturn(WHITE);
     tree->Setparent(NULL);
@@ -61,14 +51,16 @@ void misc::selectedSquare(int x, int y){
 }
 
 
-void misc::highlightMoves(std::list<Move> moves){
+void misc::highlightMoves(int x, int y, std::list<Move> moves){
 
     for(auto iter = moves.begin(); iter!= moves.end(); ++iter){
-        Piece* p = *((*iter).getDestinies().begin());
-        int x = p->GetX(), y = p->GetY();
-        selectedSquare(x*SIDE, y*SIDE);
+        Move m = *iter;
+        if(m.Getx() == x && m.Gety() == y){
+            Piece* p = *(m.getDestinies().begin());
+            int x = p->GetX(), y = p->GetY();
+            selectedSquare(x*SIDE, y*SIDE);
+        }
     }
-
 }
 
 misc::~misc()

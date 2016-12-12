@@ -2,6 +2,7 @@
 #define PIECE_H
 
 #include <stdio.h>
+#include<iostream>
 
 
 class Piece
@@ -11,13 +12,25 @@ class Piece
         ~Piece();
 
         int GetX() { return x; }
-        void SetX(int val) { x = val; }
+        void SetX(int val) {
+            //this->print();
+            //std::cout<<" ***Changing X to "<<val;
+            x = val; }
         int GetY() { return y; }
-        void SetY(int val) { y = val; }
+        void SetY(int val) {
+            //this->print();
+            //std::cout<<" ***Changing Y to "<<val;
+            y = val; }
         int Getcolor() { return color; }
-        void Setcolor(int val) { color = val; }
+        void Setcolor(int val) {
+            //this->print();
+            //std::cout<<" ***Changing color to "<<val;
+            color = val; }
         int Gettype() { return type; }
-        void Settype(int val) { type = val; }
+        void Settype(int val) {
+            //this->print();
+            //std::cout<<" ***Changing type to "<<val;
+            type = val; }
         void print();
 
     protected:

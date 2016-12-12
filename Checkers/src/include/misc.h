@@ -30,7 +30,7 @@ class misc
 
         void init_tree(Node* tree);
         void highlightSquare(int x, int y);
-        void highlightMoves(std::list<Move> moves);
+        void highlightMoves(int x, int y, std::list<Move> moves);
         void selectedSquare(int x, int y);
 
     protected:
