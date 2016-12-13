@@ -12,7 +12,6 @@ void misc::init_tree(Node* tree){
                 tree->SetPiece(new Piece(j, i, WHITE, SIMPLE));
     }
     tree->Setturn(WHITE);
-    tree->Setparent(NULL);
 }
 
 

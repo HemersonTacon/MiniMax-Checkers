@@ -9,6 +9,7 @@ class Move
 {
     public:
         Move(int x, int y, int atck);
+        Move(){}
         virtual ~Move();
 
         int Getx() { return x; }

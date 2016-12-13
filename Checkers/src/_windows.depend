@@ -33,13 +33,14 @@
 	"Node.h"
 	<iostream>
 
-1481563810 source:c:\users\hemerson\desktop\cc 8 periodo\sistemas inteligentes\checkers\src\main.cpp
+1481607288 source:c:\users\hemerson\desktop\cc 8 periodo\sistemas inteligentes\checkers\src\main.cpp
 	<iostream>
 	<list>
 	<stdio.h>
 	<stdlib.h>
 	<GL/glut.h>
-	<Node.h>
+	"Node.h"
+	"MinimaxTree.h"
 
 1368294560 c:\users\hemerson\desktop\cc 8 periodo\sistemas inteligentes\checkers\include\gl\glut.h
 	"freeglut_std.h"
@@ -61,8 +62,9 @@
 	<stdlib.h>
 	<GL/glut.h>
 
-1481574341 c:\users\hemerson\desktop\cc 8 periodo\sistemas inteligentes\checkers\src\include\node.h
+1481603256 c:\users\hemerson\desktop\cc 8 periodo\sistemas inteligentes\checkers\src\include\node.h
 	"Piece.h"
+	<limits>
 	<GL/glut.h>
 	<math.h>
 	<iostream>
@@ -76,20 +78,27 @@
 	<stdio.h>
 	<iostream>
 
-1481574840 source:c:\users\hemerson\desktop\cc 8 periodo\sistemas inteligentes\checkers\src\src\node.cpp
+1481602895 source:c:\users\hemerson\desktop\cc 8 periodo\sistemas inteligentes\checkers\src\src\node.cpp
 	"Node.h"
 
 1481411088 source:c:\users\hemerson\desktop\cc 8 periodo\sistemas inteligentes\checkers\src\src\piece.cpp
 	"Piece.h"
 
-1481573257 source:c:\users\hemerson\desktop\cc 8 periodo\sistemas inteligentes\checkers\src\src\misc.cpp
+1481598656 source:c:\users\hemerson\desktop\cc 8 periodo\sistemas inteligentes\checkers\src\src\misc.cpp
 	<misc.h>
 
-1481503860 c:\users\hemerson\desktop\cc 8 periodo\sistemas inteligentes\checkers\src\include\move.h
+1481598388 c:\users\hemerson\desktop\cc 8 periodo\sistemas inteligentes\checkers\src\include\move.h
 	<list>
 	"Piece.h"
 	<iostream>
 
 1481503825 source:c:\users\hemerson\desktop\cc 8 periodo\sistemas inteligentes\checkers\src\src\move.cpp
+	"Move.h"
+
+1481607373 source:c:\users\hemerson\desktop\cc 8 periodo\sistemas inteligentes\checkers\src\src\minimaxtree.cpp
+	"MinimaxTree.h"
+
+1481600292 c:\users\hemerson\desktop\cc 8 periodo\sistemas inteligentes\checkers\src\include\minimaxtree.h
+	"Node.h"
 	"Move.h"
 

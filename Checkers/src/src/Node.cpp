@@ -1,12 +1,16 @@
 #include "Node.h"
 
-Node::Node(int n)
+
+Node::Node()
 {
     aux->init_tree(this);
-    this->Setn_child(n);
-    children = new Node*[this->Getn_child()];
     pieceCounter[0] = pieceCounter[1] = 0;
+    alfa = INT_MIN;
+    beta = INT_MAX;
+    depth = 0;
 }
+
+
 
 void Node::SetPiece(Piece* p){
     /**Gives me 1 when color == BLACK and 0 when color == WHITE*/
@@ -83,7 +87,7 @@ void Node::MovePiece(int button, int state, int x, int y){
                                 pieceSelected->SetY(destiny->GetY());
                                 /**se este movimento é de ataque*/
                                 if(m.Getatck() > 0){
-                                    Piece* pRemove = *((*iter).getAttacked().begin());
+                                    Piece* pRemove = *(m.getAttacked().begin());
                                     this->RemovePiece(pRemove);
                                     /**Se é um ataque em cadeia*/
                                     if(m.Getatck() > 1){
@@ -209,13 +213,13 @@ void Node::GetAllmoves(int color){
         }
         auto minmax = std::minmax_element(std::begin(chains), std::end(chains));
         maxChain = *minmax.second;
-        std::cout<<"\n\n###\n\nAll Max chain "<<maxChain;
+        //std::cout<<"\n\n###\n\nAll Max chain "<<maxChain;
         for(auto iter = moves.begin(); iter!= moves.end(); ){
             Move m = (*iter);
             Piece* dest = *(m.getDestinies().begin());
-            std::cout<<"\nMove from "<<m.Getx()<<", "<<m.Gety()<<" to "<<dest->GetX()<<", "<<dest->GetY()<<" with chain "<<(*iter).Getatck();
+            //std::cout<<"\nMove from "<<m.Getx()<<", "<<m.Gety()<<" to "<<dest->GetX()<<", "<<dest->GetY()<<" with chain "<<(*iter).Getatck();
             if((*iter).Getatck() < maxChain){
-                std::cout<<"\nErasing that...";
+                //std::cout<<"\nErasing that...";
                 iter = moves.erase(iter);
             } else{
                 ++iter;
@@ -335,6 +339,28 @@ int Node::AtckMoves(int color, int type, Move origin){
 
     return *minmax.second;
 }
+
+void Node::makeBkp(std::list<Piece>* bkpPieces){
+    for(int i = 0; i < 2; ++i){
+        for(auto iter = Pieces[i].begin(); iter!= Pieces[i].end(); ++iter){
+            Piece* p = *iter;
+            bkpPieces[i].push_back(*p);
+        }
+    }
+
+}
+
+void Node::restoreBkp(std::list<Piece>* bkpPieces){
+    Pieces[0].clear();
+    Pieces[1].clear();
+    for(int i = 0; i < 2; ++i){
+        for(auto iter = bkpPieces[i].begin(); iter!= bkpPieces[i].end(); ++iter){
+            Piece p = *iter;
+            Pieces[i].push_back(new Piece(p.GetX(), p.GetY(), p.Getcolor(), p.Gettype()));
+        }
+    }
+}
+
 
 
 Node::~Node()

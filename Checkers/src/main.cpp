@@ -4,7 +4,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <GL/glut.h>
-#include <Node.h>
+#include "Node.h"
+#include "MinimaxTree.h"
 #define BLACK 1
 #define WHITE -1
 #define SIMPLE 1
@@ -12,9 +13,12 @@
 #define WIDTH 560
 #define HEIGHT 560
 #define SIDE 70
+#define DEPTH 3
+#define HEURISTIC 1
 #define CIRCLE_PRECISION 180
 
-Node* game = new Node(7);
+Node* game = new Node();
+MinimaxTree* AI = new MinimaxTree(DEPTH, HEURISTIC);
 
 void init(void)
 {
@@ -30,8 +34,10 @@ void init(void)
    glLoadIdentity();           // Inicializa com matriz identidade
 }
 
-void idle()
-{
+void idle(){
+    if(game->Getturn() == BLACK){
+        AI->AIMove(game);
+    }
 }
 
 void display(void)

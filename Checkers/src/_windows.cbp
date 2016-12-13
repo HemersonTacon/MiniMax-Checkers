@@ -39,11 +39,13 @@
 			<Add library="libglew32.dll.a" />
 			<Add directory="../lib" />
 		</Linker>
+		<Unit filename="include/MinimaxTree.h" />
 		<Unit filename="include/Move.h" />
 		<Unit filename="include/Node.h" />
 		<Unit filename="include/Piece.h" />
 		<Unit filename="include/misc.h" />
 		<Unit filename="main.cpp" />
+		<Unit filename="src/MinimaxTree.cpp" />
 		<Unit filename="src/Move.cpp" />
 		<Unit filename="src/Node.cpp" />
 		<Unit filename="src/Piece.cpp" />
