@@ -1,0 +1,87 @@
+# depslib dependency file v1.0
+1409787732 source:/media/rodrigo/Data/Rodrigo/Dropbox/Projects/Disciplinas/CG/CG/src/01_quad.cpp
+	<stdio.h>
+	<GL/glut.h>
+
+1368290960 /media/rodrigo/Data/Rodrigo/Dropbox/Projects/Disciplinas/CG/CG/include/GL/glut.h
+	"freeglut_std.h"
+
+1368290960 /media/rodrigo/Data/Rodrigo/Dropbox/Projects/Disciplinas/CG/CG/include/GL/freeglut_std.h
+	<windows.h>
+	<OpenGL/gl.h>
+	<OpenGL/glu.h>
+	<GL/gl.h>
+	<GL/glu.h>
+	<stdlib.h>
+
+1481641081 source:/home/lab/Downloads/MiniMaxCheckers-master/Checkers/src/main.cpp
+	<iostream>
+	<list>
+	<stdio.h>
+	<stdlib.h>
+	<GL/glut.h>
+	"include/Node.h"
+	"include/MinimaxTree.h"
+
+1481607832 /home/lab/Downloads/MiniMaxCheckers-master/Checkers/include/GL/glut.h
+	"freeglut_std.h"
+
+1481607832 /home/lab/Downloads/MiniMaxCheckers-master/Checkers/include/GL/freeglut_std.h
+	<windows.h>
+	<OpenGL/gl.h>
+	<OpenGL/glu.h>
+	<GL/gl.h>
+	<GL/glu.h>
+	<stdlib.h>
+
+1481641062 source:/home/lab/Downloads/MiniMaxCheckers-master/Checkers/src/src/MinimaxTree.cpp
+	"../include/MinimaxTree.h"
+
+1481640937 source:/home/lab/Downloads/MiniMaxCheckers-master/Checkers/src/src/misc.cpp
+	"../include/misc.h"
+
+1481640945 source:/home/lab/Downloads/MiniMaxCheckers-master/Checkers/src/src/Move.cpp
+	"../include/Move.h"
+
+1481640951 source:/home/lab/Downloads/MiniMaxCheckers-master/Checkers/src/src/Node.cpp
+	"../include/Node.h"
+
+1481640973 source:/home/lab/Downloads/MiniMaxCheckers-master/Checkers/src/src/Piece.cpp
+	"../include/Piece.h"
+
+1481640962 /home/lab/Downloads/MiniMaxCheckers-master/Checkers/src/include/Node.h
+	"Piece.h"
+	<climits>
+	<GL/glut.h>
+	<math.h>
+	<iostream>
+	<list>
+	<algorithm>
+	<stdio.h>
+	"misc.h"
+	"Move.h"
+
+1481607832 /home/lab/Downloads/MiniMaxCheckers-master/Checkers/src/include/Piece.h
+	<stdio.h>
+	<iostream>
+
+1481607832 /home/lab/Downloads/MiniMaxCheckers-master/Checkers/src/include/misc.h
+	"Node.h"
+	"Move.h"
+	<iostream>
+	<list>
+	<stdio.h>
+	<stdlib.h>
+	<GL/glut.h>
+
+1481607832 /home/lab/Downloads/MiniMaxCheckers-master/Checkers/src/include/Move.h
+	<list>
+	"Piece.h"
+	<iostream>
+
+1481640834 /home/lab/Downloads/MiniMaxCheckers-master/Checkers/src/include/MinimaxTree.h
+	<cstring>
+	<climits>
+	"Node.h"
+	"Move.h"
+
