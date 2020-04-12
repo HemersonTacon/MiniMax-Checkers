@@ -15,25 +15,48 @@
 
 //class Node;
 
-class MinimaxTree
-{
+class MinimaxTree {
+
     public:
+
         MinimaxTree(int depth, int heuristic);
         virtual ~MinimaxTree();
 
-        int Getdepth() { return depth; }
-        void Setdepth(int val) { depth = val; }
-        Move GetbestMove() { return bestMove; }
-        void SetbestMove(Move val) { bestMove = val; }
+        int Getdepth() {
+
+            return depth;
+        }
+
+        void Setdepth(int val) {
+
+            depth = val;
+        }
+
+        Move GetbestMove() {
+
+            return bestMove;
+        }
+
+        void SetbestMove(Move val) {
+
+            bestMove = val;
+        }
+
         int searchMiniMax(Node root);
+
         void AIMove(Node* board);
 
     protected:
+
         Node doTheMove(Node board, Move m);
         Node* doTheMoveForReal(Node* board, Move m);
+
     private:
+
         int depth;
+
         int boardValue[32];
+
         Move bestMove;
 };
 

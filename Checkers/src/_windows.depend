@@ -102,3 +102,72 @@
 	"Node.h"
 	"Move.h"
 
+1586724767 source:e:\gameprojects\minimaxcheckers\checkers\src\src\minimaxtree.cpp
+	"MinimaxTree.h"
+
+1586724239 e:\gameprojects\minimaxcheckers\checkers\src\include\minimaxtree.h
+	"Node.h"
+	"Move.h"
+
+1586719006 e:\gameprojects\minimaxcheckers\checkers\src\include\node.h
+	"Piece.h"
+	<limits>
+	<GL/glut.h>
+	<math.h>
+	<iostream>
+	<list>
+	<algorithm>
+	<stdio.h>
+	"misc.h"
+	"move.h"
+
+1586701363 e:\gameprojects\minimaxcheckers\checkers\src\include\piece.h
+	<stdio.h>
+	<iostream>
+
+1586701363 e:\gameprojects\minimaxcheckers\checkers\include\gl\glut.h
+	"freeglut_std.h"
+
+1586701363 e:\gameprojects\minimaxcheckers\checkers\include\gl\freeglut_std.h
+	<windows.h>
+	<OpenGL/gl.h>
+	<OpenGL/glu.h>
+	<GL/gl.h>
+	<GL/glu.h>
+	<stdlib.h>
+
+1586701363 e:\gameprojects\minimaxcheckers\checkers\src\include\misc.h
+	"Node.h"
+	"Move.h"
+	<iostream>
+	<list>
+	<stdio.h>
+	<stdlib.h>
+	<GL/glut.h>
+
+1586701363 e:\gameprojects\minimaxcheckers\checkers\src\include\move.h
+	<list>
+	"Piece.h"
+	<iostream>
+
+1586724976 source:e:\gameprojects\minimaxcheckers\checkers\src\src\misc.cpp
+	<misc.h>
+
+1586701363 source:e:\gameprojects\minimaxcheckers\checkers\src\src\move.cpp
+	"Move.h"
+
+1586723237 source:e:\gameprojects\minimaxcheckers\checkers\src\src\node.cpp
+	"Node.h"
+
+1586701363 source:e:\gameprojects\minimaxcheckers\checkers\src\src\piece.cpp
+	"Piece.h"
+
+1586723471 source:e:\gameprojects\minimaxcheckers\checkers\src\main.cpp
+	<iostream>
+	<list>
+	<stdio.h>
+	<stdlib.h>
+	<GL/glut.h>
+	"Node.h"
+	"MinimaxTree.h"
+
